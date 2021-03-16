@@ -1,0 +1,27 @@
+.main-footer {
+  background: #ff5f6d;
+  background: -webkit-linear-gradient(to right, #ff5f6d, #ffc371);
+  background: linear-gradient(to right, #ff5f6d, #ffc371);
+  font-size: 0.8em;
+
+  display: flex;
+  position: relative;
+
+  box-shadow: none;
+}
+h4 {
+  font-weight: bold;
+}
+.mapa {
+  text-decoration: none;
+  color: blue;
+}
+
+.main-footer > div {
+  flex: 1;
+  display: grid;
+  justify-content: center;
+}
+.col-sm {
+  padding-left: 80px;
+}
