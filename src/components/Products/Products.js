@@ -35,9 +35,7 @@ function Products() {
     <div>
       <h1 className={styles.nadpis}> Produkty</h1>
       <div className={styles.outer_wrapper}>
-        {data.map((item) => {
-          const { name, price, id, img } = item;
-          return (
+        {data.map(( { name, price, id, img }) => (
             <div className={styles.vse}>
               <div className={styles.produkt} key={id}>
                 <div className={styles.container}>
