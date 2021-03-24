@@ -1,0 +1,15 @@
+.header {
+  font-size: 40px;
+  position: relative;
+  top: 15px;
+  left: 150px;
+  font-family: sans-serif;
+  margin: 5%;
+  text-align: center;
+}
+@media screen and (max-width: 960px) {
+  .header {
+    margin: 10%;
+    font-size: 30px;
+  }
+}

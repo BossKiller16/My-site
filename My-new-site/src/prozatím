@@ -1,0 +1,140 @@
+ <div key={id} className={styles.blok}>
+            <img className={styles.img} alt={name} src={img} />
+            <h3 className={styles.name}>{name}</h3>
+            <h2 className={styles.price}>{price}</h2>
+            <div className={styles.buttons}>
+              <button key={id} onClick={increase(id)} className={styles.plus}>
+                <GrIcons.GrAdd />
+              </button>
+
+              {Count}
+
+              <button
+                key={item}
+                onClick={decrease(id)}
+                className={styles.minus}
+              >
+                <AiIcons.AiOutlineMinus />
+              </button>
+            </div>
+          </div>
+        );
+      })}
+    </div>  */}
+
+
+
+  /*   increment = (hodnota) => {
+    if (this.props.quantity > 0) {
+      this.props.handleQuntityChange(this.props.id, hodnota);
+    }
+  };
+  currentProduct = Product.find((value) => value.id === this.props.id) || {};
+  celkovaCena = this.currentProduct.price * this.props.hodnota;
+ */
+
+
+
+
+
+
+
+
+
+ import React,from "react";
+import { useReducer, useContext, createContext } from "react";
+
+import Product from "../Products/data";
+import styles from "./Cart.module.css";
+import * as AiIcons from "react-icons/ai";
+import * as GrIcons from "react-icons/gr";
+import Cart from "./cart";
+import { useCart } from "./CartReducer";
+import { handleQuntityChange } from "./CartReducer";
+
+function Produkty()  {
+
+    return (
+      <cart>
+        <div key={this.currentProduct.id} className={styles.blok}>
+          <img
+            className={styles.img}
+            alt={this.currentProduct.name}
+            src={this.currentProduct.img}
+          />
+          <h3 className={styles.name}>{this.currentProduct.name}</h3>
+          <h2 className={styles.price}>{this.currentProduct.price + ",-"}</h2>
+          <div className={styles.buttons}>
+            <button
+              key={this.currentProduct.id}
+              className={styles.plus}
+              onClick={() => this.increment(+1)}
+            >
+              <GrIcons.GrAdd />
+            </button>
+            <span>{this.props.quantity}</span>
+            <button
+              key={this.currentProduct.id}
+              className={styles.minus}
+              onClick={() => this.increment(-1)}
+            >
+              <AiIcons.AiOutlineMinus />
+            </button>
+            <span>
+              {this.props.quantity * this.currentProduct.price + ",-"}
+            </span>
+          </div>
+        </div>
+      </cart>
+    );
+  }
+
+export default Produkty;
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState } from "react";
+import { useReducer, useContext, createContext } from "react";
+
+import Products from "./Produkt";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import data from "../Products/data";
+
+export function Cart() {
+  const [state, setState] = useState([
+    { id: 0, quantity: 1 },
+    { id: 1, quantity: 1 },
+  ]);
+  const handleQuntityChange = (id, hodnota) => {
+    const newState = state.map((value) => {
+      if (value.id === id)
+        return { ...value, quantity: value.quantity + hodnota };
+      return value;
+    });
+    setState(newState);
+  };
+
+  return (
+    <cart>
+      {state.map((val, index) => (
+        <Products
+          key={index}
+          id={val.id}
+          quantity={val.quantity}
+          handleQuntityChange={handleQuntityChange}
+        />
+      ))}
+    </cart>
+  );
+}
+
+export default Cart;
