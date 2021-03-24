@@ -29,10 +29,4 @@ export const SidebarData = [
     cName: "navLinks",
     icon: <AiIcons.AiFillContacts />,
   },
-  {
-    title: "Přihlásit se",
-    url: "přihlásit-se",
-    cName: "navLinks-mobile",
-    icon: <BiIcons.BiLogIn />,
-  },
 ];

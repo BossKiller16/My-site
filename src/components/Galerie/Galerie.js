@@ -1,5 +1,5 @@
 import React from "react";
-import "./galerie.css";
+import styles from "./galerie.module.css";
 
 const galerie = [
   {
@@ -32,21 +32,23 @@ const galerie = [
       "https://c1.primacdn.cz/sites/default/files/styles/scale_desktop/public/a768d4bf/3794513-17-04-25sef_1056_fotor.jpg?itok=KM9bWkfu",
     id: 5,
   },
+  {
+    name: "nwm",
+    src:
+      "https://c1.primacdn.cz/sites/default/files/styles/scale_desktop/public/a768d4bf/3794513-17-04-25sef_1056_fotor.jpg?itok=KM9bWkfu",
+    id: 6,
+  },
 ];
 
 function Galerie() {
   return (
-    <div className="galerie">
-      <h1 className="nadpis">Galerie</h1>
-
-      {galerie.map((fotka) => {
-        const { name, id, src } = fotka;
-        return (
-          <div className="block" key={id}>
-            <img className="img" src={src} alt={name} />
-          </div>
-        );
-      })}
+    <div className={styles.galerie}>
+      <h1 className={styles.nadpis}>Galerie</h1>
+      {galerie.map(({ name, id, src }) => (
+        <div className={styles.block} key={id}>
+          <img className={styles.img} src={src} alt={name} />
+        </div>
+      ))}
     </div>
   );
 }
