@@ -1,0 +1,22 @@
+.mainFooter {
+background: linear-gradient(to right, #ff5f6d, #ffc371);
+  font-size: 0.8em;
+
+  display: flex;
+  position: relative;
+
+  box-shadow: none;
+}
+h4 {
+  font-weight: bold;
+}
+
+
+.mainFooter {
+  flex: 1;
+  display: grid;
+  justify-content: center;
+}
+.foot {
+  padding-left: 80px;
+}

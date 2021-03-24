@@ -1,13 +1,13 @@
 import Product from "../Products/data";
+import { useContext } from "react";
 import styles from "./Cart.module.css";
 import * as AiIcons from "react-icons/ai";
 import * as GrIcons from "react-icons/gr";
 import * as TirIcons from "react-icons/ti";
-import { useCart } from "./CartReducer";
-import { useSetState } from "./CartReducer";
+import { Store } from "../chart/CartReducer";
+
 function Produkty(props) {
-  const cart = useCart();
-  const setCart = useSetState();
+  const [cart, setCart] = useContext(Store);
   const increment = (hodnota) => {
     props.handleQuntityChange(props.id, hodnota);
   };

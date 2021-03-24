@@ -1,10 +1,10 @@
 .outer_wrapper {
   width: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .nadpis {
   text-align: center;
   font-size: 40px;
@@ -22,24 +22,29 @@
   border: solid 2px black;
   transition: box-shadow 0.5s, transform 0.5s;
 }
+
 .produkt:hover {
   transform: scale(1);
   box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
 }
+
 .details {
   text-align: center;
 }
+
 .cena {
   font-size: 20px;
 }
+
 .buy {
   width: 100%;
   padding-bottom: 20px;
   font-size: 50px;
   text-align: center;
-   cursor: pointer;
- border-top: solid thin rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  border-top: solid thin rgba(0, 0, 0, 0.1);
 }
+
 .buy:hover {
   transition: 0.5s;
   background: rgba(161, 244, 247, 1);
@@ -48,55 +53,50 @@
 .images {
   width: 300px;
   height: 300px;
-
   content: cover;
 }
+
 .container {
   text-align: center;
 }
+
 @media screen and (max-width: 960px) {
   .outer_wrapper {
     width: 33%;
     height: 33%;
     display: inline;
   }
-
   .produkt {
     background: white;
     margin: 0 auto;
-
     border-radius: 10px 10px 10px 10px;
     box-shadow: 0;
     transform: scale(0.95);
     float: none;
-
     border: solid 2px black;
     transition: box-shadow 0.5s, transform 0.5s;
   }
 }
+
 @media screen and (max-width: 280px) {
   .outer_wrapper {
     display: inline;
   }
-
   .produkt {
     width: 80%;
     height: 80%;
     background: white;
     margin: 0 auto;
-
     border-radius: 10px 10px 10px 10px;
     box-shadow: 0;
     transform: scale(0.95);
     float: none;
-
     border: solid 2px black;
     transition: box-shadow 0.5s, transform 0.5s;
   }
   .images {
     width: 80%;
     height: 80%;
-
     object-position: center;
   }
 }
