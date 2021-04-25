@@ -1,88 +1,68 @@
-import React from "react";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import styles from "./Cart.module.css";
-import * as BiIcons from "react-icons/bi";
-import StripeCheckout from "react-stripe-checkout"
-import Products from "./Produkt";
-import { useContext } from "react";
-import { Store } from "../chart/CartReducer";
+import styles from './Cart.module.css'
+import * as BiIcons from 'react-icons/bi'
+import StripeCheckout from 'react-stripe-checkout'
+import Products from './Produkt'
+import { useContext } from 'react'
+import { Store } from '../chart/CartReducer'
 
 export const Cart = () => {
+   const [cart, setCart] = useContext(Store)
 
-
-  const [cart, setCart] = useContext(Store);
-
-  const handleQuntityChange = (id, hodnota) => {
-    const newState = cart.map((value) => {
-      if (value.id === id)
-        return { ...value, quantity: value.quantity + hodnota };
-      return value;
-    });
-    setCart(newState);
-  };
-  const handleToken = (token) => {
-    const body = {
-      token,
-      cart
-    }
-    const headers = {
-      "Content-Type": 'application/json'
-    }
-    return fetch("http://localhost:8282/payment", {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        console.log("RESPONSE", response);
-        const { status } = response
-        console.log("STATUS", status);
-
-
+   const handleQuntityChange = (id, hodnota) => {
+      const newState = cart.map((value) => {
+         if (value.id === id)
+            return { ...value, quantity: value.quantity + hodnota }
+         return value
       })
-      .catch(err => console.log(err))
-  }
-  const getTotalSum = () => {
-    return cart.reduce((sum, { price, quantity }) => sum + price * quantity, 0)
-  }
+      setCart(newState)
+   }
 
+   const getTotalSum = () => {
+      return cart.reduce(
+         (sum, { price, quantity }) => sum + price * quantity,
+         0
+      )
+   }
+   const totalSum = getTotalSum()
 
-  if (cart.length === 0)
-  {
-    return (
+   var DPH = getTotalSum() * 0.15
+
+   if (cart.length === 0) {
+      return (
+         <cart>
+            <p className={styles.empty}>
+               Košík je prázdný
+               <BiIcons.BiSad />
+            </p>
+         </cart>
+      )
+   }
+
+   return (
       <cart>
-        <p className={styles.empty}>
-          Košík je prázdný
-      <BiIcons.BiSad />
-        </p>
+         <h1 className={styles.nadpis}>Košík</h1>
+         {cart.map((val, index) => (
+            <Products
+               key={index}
+               id={val.id}
+               quantity={val.quantity}
+               handleQuntityChange={handleQuntityChange}
+            />
+         ))}
+
+         <div className={styles.DPH}>
+            Celkem bez DPH {getTotalSum() - DPH} Kč
+            <br />
+            Celkem s DPH {getTotalSum()} Kč
+         </div>
+         <Link to="platba">
+            <button className={styles.btn}>Pokračovat v objednávce</button>
+         </Link>
       </cart>
-    );
-  }
+   )
+}
 
-  return (
-    <cart>
-      <h1 className={styles.nadpis}>Košík</h1>
-      {cart.map((val, index) => (
-        <Products
-          key={index}
-          id={val.id}
-          quantity={val.quantity}
-          handleQuntityChange={handleQuntityChange}
-        />
-      ))}
-      <div>{getTotalSum()}</div>
-      <StripeCheckout
-
-        stripeKey={process.env.REACT_APP_KEY_PUBLIC}
-        token={handleToken}
-        amount={getTotalSum() * 100}
-        name={cart.name}
-      /*     shippingAddress
-          billingAddress */
-      ><button className={styles.btn}>Zakoupit za {getTotalSum()}</button></StripeCheckout>
-
-    </cart>
-  );
-};
-
-export default Cart;
+export default Cart

@@ -2,18 +2,30 @@ const { v4: uuid } = require('uuid')
 const cors = require('cors')
 const express = require('express')
 const Stripe = require('stripe')
+const { google } = require('googleapis')
 require('dotenv').config()
 
-var bodyParser = require('body-parser')
 const stripe = Stripe(process.env.REACT_APP_KEY)
 const app = express()
+app.get('/', async (req, res) => {
+   /*  const auth = new google.auth.GoogleAuth({
+      keyFile: 'credentials.json',
+      scopes: 'https://www.googleapis.com/auth/spreadsheets',
+   })
+
+   const client = await auth.getClient()
+
+   const googleSheets = google.sheets({ version: 'v4', auth: client })
+   const spreadsheetId = '1tbWKYof6ekLR1uYgjiPkRgfTnrAb2o4GUE_0S467UMI'
+   const metaData = await googleSheets.spreadsheets.get({
+      auth,
+      spreadsheetId,
+   })
+   res.send(metaData) */
+})
 app.use(express.json())
 
 app.use(cors())
-app.get('/', (req, res) => {
-   res.send('IT WORKS')
-})
-
 app.post('/payment', async (req, res) => {
    const { cart, token, totalSum, billingDetails, email, nameRef } = req.body
 
@@ -55,4 +67,4 @@ app.post('/payment', async (req, res) => {
 
    return res.send(req.body)
 })
-app.listen(4000, () => console.log('LISTENING AT PORT 4000'))
+app.listen(4000, (req, res) => console.log('LISTENING AT PORT 4000'))

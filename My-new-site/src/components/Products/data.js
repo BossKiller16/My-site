@@ -1,18 +1,20 @@
+import vajickoFoto from '../Galerie/fotky/vajickoProdukt.jpg'
+import kuře from '../Galerie/fotky/Quail-510x600.jpg'
+
 const data = [
-  {
-    name: "křepelka",
-    price: 99,
-    id: 0,
-    img: "https://mightynicemeats.com.au/wp-content/uploads/Quail-510x600.jpg",
-  },
+   {
+      name: 'křepelka',
+      price: 99,
+      id: 0,
+      img: kuře,
+   },
 
-  {
-    name: "vajičko",
-    price: 3,
-    id: 1,
-    img:
-      "https://s7d5.scene7.com/is/image/CentralMarket/000942009-1?$large$&hei=416&wid=416",
-  },
-];
+   {
+      name: 'vajičko',
+      price: 3,
+      id: 1,
+      img: vajickoFoto,
+   },
+]
 
-export default data;
+export default data
